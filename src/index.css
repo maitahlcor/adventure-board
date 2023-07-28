@@ -224,7 +224,7 @@ nav .logo-container .logo {
 }
 
 .swipe {
-    position: absolute;
+    position: relative;
 }
 
 .dashboard .card-container {
@@ -242,6 +242,7 @@ nav .logo-container .logo {
 
 .card h3 {
     margin-top: 0;
+    
 }
 
 .dashboard .swipe-info {

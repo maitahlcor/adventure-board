@@ -11,11 +11,11 @@ const Dashboard = () => {
     const [cookies, setCookie, removeCookie] = useCookies(['user'])
 
     const userId = cookies.UserId
-    const BASE_URL = import.meta.env.VITE_BASE_URL ;
+
 
     const getUser = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/user`, {
+            const response = await axios.get('http://localhost:8000/user', {
                 params: {userId}
             })
             setUser(response.data)
@@ -25,7 +25,7 @@ const Dashboard = () => {
     }
     const getGenderedUsers = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/gendered-users`, {
+            const response = await axios.get('http://localhost:8000/gendered-users', {
                 params: {gender: user?.game_interest}
             })
             setGenderedUsers(response.data)
@@ -46,8 +46,8 @@ const Dashboard = () => {
     }, [user])
 
     const updateMatches = async (matchedUserId) => {
-        try {  
-            await axios.put(`${BASE_URL}/addmatch`, {
+        try {
+            await axios.put('http://localhost:8000/addmatch', {
                 userId,
                 matchedUserId
             })
@@ -92,7 +92,10 @@ const Dashboard = () => {
                                 <div
                                     style={{backgroundImage: "url(" + genderedUser.url + ")"}}
                                     className="card">
-                                    <h3>{genderedUser.first_name}</h3>
+                                    <h1>{genderedUser.first_name}</h1>
+                                    <h3>{genderedUser.game_role}</h3>
+                                    <h3>{genderedUser.game_interest}</h3>
+                                    <h3>{genderedUser.about}</h3>
                                 </div>
                             </TinderCard>
                         )}
