@@ -30,6 +30,7 @@ const Home = () => {
                 setIsSignUp={setIsSignUp}
             />
             <div className="home">
+                <p className="primary-title">So... a dwarf, an elf and a wizards enter to a tavern</p>
                 <h1 className="primary-title">Swipe Right®</h1>
                 <button className="primary-button" onClick={handleClick}>
                     {authToken ? 'Signout' : 'Create Account'}
