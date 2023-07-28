@@ -4,6 +4,7 @@ import {useCookies} from 'react-cookie'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
+const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
 const OnBoarding = () => {
     const [cookies, setCookie, removeCookie] = useCookies(null)
     const [formData, setFormData] = useState({
