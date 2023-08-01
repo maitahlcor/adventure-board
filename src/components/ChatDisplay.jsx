@@ -9,10 +9,10 @@ const ChatDisplay = ({ user , clickedUser }) => {
     const clickedUserId = clickedUser?.user_id
     const [usersMessages, setUsersMessages] = useState(null)
     const [clickedUsersMessages, setClickedUsersMessages] = useState(null)
-
+    const BASE_URL = import.meta.env.VITE_BASE_URL ;
     const getUsersMessages = async () => {
      try {
-            const response = await axios.get('http://localhost:8000/messages', {
+            const response = await axios.get(`${BASE_URL}/messages`, {
                 params: { userId: userId, correspondingUserId: clickedUserId}
             })
          setUsersMessages(response.data)
@@ -23,7 +23,7 @@ const ChatDisplay = ({ user , clickedUser }) => {
 
     const getClickedUsersMessages = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/messages', {
+            const response = await axios.get(`${BASE_URL}/messages`, {
                 params: { userId: clickedUserId , correspondingUserId: userId}
             })
             setClickedUsersMessages(response.data)

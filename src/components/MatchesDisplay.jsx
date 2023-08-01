@@ -8,7 +8,7 @@ const MatchesDisplay = ({ matches, setClickedUser }) => {
 
   const matchedUserIds = matches.map(({ user_id }) => user_id);
   const userId = cookies.UserId;
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL ;
   const getMatches = async () => {
     try {
       const response = await axios.get("http://localhost:8000/users", {

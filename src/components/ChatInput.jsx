@@ -5,7 +5,7 @@ const ChatInput = ({ user, clickedUser, getUserMessages, getClickedUsersMessages
     const [textArea, setTextArea] = useState("")
     const userId = user?.user_id
     const clickedUserId = clickedUser?.user_id
-
+    const BASE_URL = import.meta.env.VITE_BASE_URL ;
     const addMessage = async () => {
         const message = {
             timestamp: new Date().toISOString(),

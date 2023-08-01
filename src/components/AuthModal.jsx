@@ -10,6 +10,7 @@ const AuthModal = ({ setShowModal,  isSignUp }) => {
     const [confirmPassword, setConfirmPassword] = useState(null)
     const [error, setError] = useState(null)
     const [ cookies, setCookie, removeCookie] = useCookies(null)
+    const BASE_URL = import.meta.env.VITE_BASE_URL ;
 
     let navigate = useNavigate()
 
@@ -29,7 +30,7 @@ const AuthModal = ({ setShowModal,  isSignUp }) => {
                 return
             }
 
-            const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, { email, password })
+            const response = await axios.post(`${BASE_URL}/${isSignUp ? 'signup' : 'login'}`, { email, password })
 
             setCookie('AuthToken', response.data.token)
             setCookie('UserId', response.data.userId)
