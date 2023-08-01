@@ -81,9 +81,9 @@ const Dashboard = () => {
             <div className="dashboard">
                 <ChatContainer user={user}/>
                 <div className="swipe-container">
-                    <div className="card-container">
-
+                    <div className="card-container">                      
                         {filteredGenderedUsers?.map((genderedUser) =>
+                            <div>
                             <TinderCard
                                 className="swipe"
                                 key={genderedUser.user_id}
@@ -93,11 +93,12 @@ const Dashboard = () => {
                                     style={{backgroundImage: "url(" + genderedUser.url + ")"}}
                                     className="card">
                                     <h1>{genderedUser.first_name}</h1>
+                                </div>
+                            </TinderCard>
                                     <h3>{genderedUser.game_role}</h3>
                                     <h3>{genderedUser.game_interest}</h3>
                                     <h3>{genderedUser.about}</h3>
-                                </div>
-                            </TinderCard>
+                            </div>
                         )}
                         <div className="swipe-info">
                             {lastDirection ? <p>You swiped {lastDirection}</p> : <p/>}
