@@ -95,9 +95,9 @@ const Dashboard = () => {
                                     <h1>{genderedUser.first_name}</h1>
                                 </div>
                             </TinderCard>
-                                    <h3>{genderedUser.game_role}</h3>
-                                    <h3>{genderedUser.game_interest}</h3>
-                                    <h3>{genderedUser.about}</h3>
+                                    <h3>I'm: {genderedUser.game_role}</h3>
+                                    <h3>Looking for:{genderedUser.game_interest}</h3>
+                                    <h3>About me: {genderedUser.about}</h3>
                             </div>
                         )}
                         <div className="swipe-info">
