@@ -8,7 +8,7 @@ const ChatHeader = ({ user }) => {
         removeCookie('AuthToken', cookies.AuthToken)
         window.location.reload()
     }
-
+    console.log(user)
     return (
         <div className="chat-container-header">
             <div className="profile">

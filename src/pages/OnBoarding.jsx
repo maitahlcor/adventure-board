@@ -17,8 +17,8 @@ const OnBoarding = () => {
         show_gameRole: false,
         game_role: "player",
         game_interest: "master",
-        url: {},
         about: "",
+        url:"",
         matches: []
 
     })
@@ -29,19 +29,16 @@ const OnBoarding = () => {
         console.log('submitted')
         e.preventDefault()
         try {
-            //console.log(formData)
             const imageData = new FormData()
             imageData.append('file', file)
             const imageDataPayload = {
                 method: 'POST',
                 body:imageData,
-
             }
             const cloudResponse = await fetch(`${BASE_URL}/file`, imageDataPayload)
             const dataIMG = await cloudResponse.json()
-            const data = {formData}
-            data.url = dataIMG.url
-            const response = await axios.put(`${BASE_URL}/user`, data)   
+            formData.url = dataIMG.url    
+            const response = await axios.put(`${BASE_URL}/user`, {formData})   
             const success = response.status === 200
             if (success) navigate('/dashboard')
         } catch (err) {
