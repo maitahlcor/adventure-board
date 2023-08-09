@@ -7,6 +7,7 @@ import axios from 'axios'
 const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:8080";
 const OnBoarding = () => {
     const [cookies, setCookie, removeCookie] = useCookies(null)
+    const [file, setFile] = useState(null)
     const [formData, setFormData] = useState({
         user_id: cookies.UserId,
         first_name: "",
@@ -16,7 +17,7 @@ const OnBoarding = () => {
         show_gameRole: false,
         game_role: "player",
         game_interest: "master",
-        url: "",
+        url: {},
         about: "",
         matches: []
 
@@ -28,8 +29,19 @@ const OnBoarding = () => {
         console.log('submitted')
         e.preventDefault()
         try {
-            const response = await axios.put(`${BASE_URL}/user`, {formData})
-            console.log(response)
+            //console.log(formData)
+            const imageData = new FormData()
+            imageData.append('file', file)
+            const imageDataPayload = {
+                method: 'POST',
+                body:imageData,
+
+            }
+            const cloudResponse = await fetch(`${BASE_URL}/file`, imageDataPayload)
+            const dataIMG = await cloudResponse.json()
+            const data = {formData}
+            data.url = dataIMG.url
+            const response = await axios.put(`${BASE_URL}/user`, data)   
             const success = response.status === 200
             if (success) navigate('/dashboard')
         } catch (err) {
@@ -48,7 +60,9 @@ const OnBoarding = () => {
             [name]: value
         }))
     }
-
+    const handleUpload = (e) => {
+       setFile(e.target.files[0])
+      };
     return (
         <>
             <Nav
@@ -199,14 +213,14 @@ const OnBoarding = () => {
 
                         <label htmlFor="url">Profile Photo</label>
                         <input
-                            type="url"
+                            type="file" 
                             name="url"
                             id="url"
-                            onChange={handleChange}
+                            onChange={handleUpload}
                             required={true}
                         />
                         <div className="photo-container">
-                            {formData.url && <img src={formData.url} alt="profile pic preview"/>}
+                            <img src={file ? URL.createObjectURL(file):''} alt="profile pic preview"/>
                         </div>
 
 
